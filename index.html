@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Book a Service</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f0f0; color: #111; min-height: 100vh;
+      display: flex; justify-content: center;
+    }
+    .container { width: 100%; max-width: 480px; min-height: 100vh; background: #fff; }
+    .header { padding: 40px 24px 32px; }
+    .header h1 { font-size: 32px; font-weight: 800; color: #000; letter-spacing: -1px; line-height: 1; }
+    .header p { font-size: 15px; color: #999; margin-top: 8px; }
+    .section { padding: 0 24px; }
+    .label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 16px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tab {
+      padding: 11px 20px; border: 2px solid #e0e0e0; border-radius: 100px;
+      font-size: 15px; font-weight: 600; color: #666; background: #fff; cursor: pointer;
+      transition: all .15s ease; user-select: none; -webkit-tap-highlight-color: transparent;
+    }
+    .tab:active { transform: scale(.95); }
+    .tab.on { background: #111; color: #fff; border-color: #111; }
+    .tab-error, .addr-error { font-size: 13px; color: #c00; margin-top: 12px; display: none; }
+    .tab-error.show, .addr-error.show { display: block; }
+    .addr-section { padding: 32px 24px 0; }
+    .addr-box { position: relative; }
+    .addr-input {
+      width: 100%; padding: 16px; padding-right: 52px; border: 2px solid #e0e0e0;
+      border-radius: 14px; font-size: 16px; color: #111; background: #fafafa; outline: none;
+      font-family: inherit; resize: none; min-height: 56px; transition: border-color .2s;
+    }
+    .addr-input:focus { border-color: #111; background: #fff; }
+    .addr-input::placeholder { color: #bbb; }
+    .addr-input.error { border-color: #c00; }
+    .loc-btn {
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border: none; background: #f0f0f0; border-radius: 10px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .15s; -webkit-tap-highlight-color: transparent;
+    }
+    .loc-btn:active { background: #ddd; }
+    .loc-btn:hover { background: #e5e5e5; }
+    .loc-btn.loading { pointer-events: none; }
+    .loc-btn svg { width: 20px; height: 20px; color: #555; }
+    .spin { width: 18px; height: 18px; border: 2.5px solid #999; border-top-color: transparent; border-radius: 50%; animation: rotate .6s linear infinite; }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    .submit-section { padding: 32px 24px; }
+    .submit-btn {
+      width: 100%; padding: 18px; background: #000; color: #fff; border: none;
+      border-radius: 14px; font-size: 17px; font-weight: 700; cursor: pointer;
+      font-family: inherit; display: flex; align-items: center; justify-content: center;
+      gap: 10px; transition: background .15s; letter-spacing: -.3px;
+    }
+    .submit-btn:active { background: #333; }
+    .submit-btn svg { width: 20px; height: 20px; }
+    .spacer { height: 80px; }
+    .call-bar {
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 480px; padding: 12px 24px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom));
+      background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); border-top: 1px solid #e8e8e8;
+    }
+    .call-link {
+      display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+      padding: 15px; border: 2px solid #000; border-radius: 14px; background: #fff;
+      color: #000; font-size: 16px; font-weight: 700; text-decoration: none;
+      transition: background .15s; font-family: inherit;
+    }
+    .call-link:active { background: #f5f5f5; }
+    .call-link svg { width: 20px; height: 20px; }
+    .toast {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-120px);
+      background: #111; color: #fff; padding: 14px 28px; border-radius: 12px;
+      font-size: 14px; font-weight: 600; z-index: 999; transition: transform .3s ease;
+      max-width: 88%; text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.bad { background: #c00; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Book a Service</h1>
+    <p>Select what you need and your address</p>
+  </div>
+
+  <div class="section">
+    <div class="label">Select Services</div>
+    <div class="tabs" id="tabs">
+      <div class="tab" onclick="pick(this)">Water Tank Cleaning</div>
+      <div class="tab" onclick="pick(this)">Solar Panel Cleaning</div>
+      <div class="tab" onclick="pick(this)">Roof Waterproofing</div>
+      <div class="tab" onclick="pick(this)">Electrical Work</div>
+      <div class="tab" onclick="pick(this)">Plumbing Services</div>
+      <div class="tab" onclick="pick(this)">Sofa Cleaning Service</div>
+      <div class="tab" onclick="pick(this)">Carwash (Door Service)</div>
+    </div>
+    <div class="tab-error" id="tabErr">Please select at least one service</div>
+  </div>
+
+  <div class="addr-section">
+    <div class="label">Your Address</div>
+    <div class="addr-box">
+      <textarea class="addr-input" id="addr" placeholder="Enter your address" rows="2"></textarea>
+      <button class="loc-btn" id="locBtn" type="button" onclick="getLoc()" title="Get current location" aria-label="Get current location">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="10" r="3"/>
+          <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="addr-error" id="addrErr">Please enter your address</div>
+
+    <!-- Hidden location fields: populated only after location permission succeeds -->
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+    <input type="hidden" id="locationAccuracy" name="locationAccuracy">
+  </div>
+
+  <div class="submit-section">
+    <button class="submit-btn" type="button" onclick="send()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      Send via WhatsApp
+    </button>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="call-bar">
+    <a href="tel:+919793871934" class="call-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      Call Us
+    </a>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  function pick(el) {
+    el.classList.toggle('on');
+    document.getElementById('tabErr').classList.remove('show');
+  }
+
+  function getSelected() {
+    return [...document.querySelectorAll('.tab.on')].map(t => t.textContent.trim());
+  }
+
+  function setHiddenLocation(lat = '', lng = '', accuracy = '') {
+    document.getElementById('latitude').value = lat;
+    document.getElementById('longitude').value = lng;
+    document.getElementById('locationAccuracy').value = accuracy;
+  }
+
+  function getLoc() {
+    const btn = document.getElementById('locBtn');
+    const svg = btn.querySelector('svg');
+
+    if (!navigator.geolocation) {
+      msg('Location is not supported by this browser', true);
+      return;
+    }
+
+    if (!window.isSecureContext) {
+      msg('Location requires HTTPS or localhost', true);
+      return;
+    }
+
+    btn.classList.add('loading');
+    svg.style.display = 'none';
+
+    const s = document.createElement('div');
+    s.className = 'spin';
+    s.id = 'sp';
+    btn.appendChild(s);
+
+    navigator.geolocation.getCurrentPosition(
+      async (p) => {
+        const lat = p.coords.latitude;
+        const lng = p.coords.longitude;
+        const accuracy = Math.round(p.coords.accuracy);
+
+        // Save coordinates and accuracy in hidden fields.
+        setHiddenLocation(lat, lng, accuracy);
+
+        // Use reverse geocoding to fill the visible address.
+        try {
+          const url = `https://nominatim.openstreetmap.org/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lng)}&format=jsonv2`;
+          const response = await fetch(url, {
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (!response.ok) throw new Error('Address lookup failed');
+
+          const data = await response.json();
+          document.getElementById('addr').value =
+            data.display_name || `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+        } catch {
+          document.getElementById('addr').value =
+            `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+        }
+
+        document.getElementById('addr').classList.remove('error');
+        document.getElementById('addrErr').classList.remove('show');
+        msg(`Location captured (accuracy about ${accuracy} m)`, false);
+        done();
+      },
+      (error) => {
+        setHiddenLocation();
+
+        const messages = {
+          1: 'Location permission denied. Allow location access and try again.',
+          2: 'Location unavailable. Please enable device location services.',
+          3: 'Location timed out. Please try again.'
+        };
+
+        msg(messages[error.code] || 'Could not get location', true);
+        done();
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 0
+      }
+    );
+
+    function done() {
+      const spinner = document.getElementById('sp');
+      if (spinner) spinner.remove();
+      svg.style.display = '';
+      btn.classList.remove('loading');
+    }
+  }
+
+  function send() {
+    const services = getSelected();
+    const addrEl = document.getElementById('addr');
+    const addr = addrEl.value.trim();
+    let ok = true;
+
+    if (!services.length) {
+      document.getElementById('tabErr').classList.add('show');
+      ok = false;
+    }
+
+    if (!addr) {
+      addrEl.classList.add('error');
+      document.getElementById('addrErr').classList.add('show');
+      ok = false;
+    }
+
+    if (!ok) {
+      msg('Fill in the required fields', true);
+      return;
+    }
+
+    const lat = document.getElementById('latitude').value;
+    const lng = document.getElementById('longitude').value;
+    const accuracy = document.getElementById('locationAccuracy').value;
+    const list = services.map((service, i) => `${i + 1}. ${service}`).join('\n');
+    const mapLink = lat && lng
+      ? `https://www.google.com/maps?q=${lat},${lng}`
+      : 'GPS location was not captured';
+
+    const text =
+      `*Service Booking Request*\n\n` +
+      `*Services:*\n${list}\n\n` +
+      `*Address:*\n${addr}\n\n` +
+      `*Customer GPS Location:*\n${mapLink}\n` +
+      (lat && lng
+        ? `*Coordinates:* ${lat}, ${lng}\n*Estimated accuracy:* ${accuracy} metres`
+        : '*GPS coordinates were not captured. Please confirm the address with the customer.*');
+
+    // WhatsApp opens with the message prefilled; the user must press Send.
+    const whatsappUrl = `https://wa.me/919793871934?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  }
+
+  function msg(text, bad) {
+    const el = document.getElementById('toast');
+    el.textContent = text;
+    el.className = 'toast' + (bad ? ' bad' : '');
+    setTimeout(() => el.classList.add('show'), 10);
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  document.getElementById('addr').addEventListener('input', function () {
+    this.classList.remove('error');
+    document.getElementById('addrErr').classList.remove('show');
+  });
+</script>
+</body>
+</html>
