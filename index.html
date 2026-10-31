@@ -46,7 +46,7 @@
   .sub { color:var(--muted); max-width:56ch; }
 
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:18px; margin-top:32px; }
-  .card { background:var(--white); border:1.5px solid var(--line); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .15s, transform .15s; }
+  .card { color:inherit; background:var(--white); border:1.5px solid var(--line); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .15s, transform .15s; }
   .card:hover { border-color:var(--blue); transform:translateY(-2px); }
   .media { aspect-ratio:16/10; background:var(--grey); }
   .media img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -59,7 +59,8 @@
   .chips li { font-size:13px; padding:4px 12px; border-radius:100px; background:var(--grey); border:1px solid var(--line); }
   .price { font-size:15px; font-weight:600; color:var(--blue); margin-top:auto; padding-top:18px; }
   .link { font-size:14px; font-weight:500; margin-top:10px; padding-top:12px; border-top:1px solid var(--line); }
-  .link:hover { color:var(--blue); }
+  .card:hover .link { color:var(--blue); }
+  .card:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
 
   .tblbox { background:var(--white); border:1.5px solid var(--line); border-radius:18px; overflow:hidden; margin-top:20px; }
   .thead { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; padding:18px 22px; border-bottom:1px solid var(--line); }
@@ -142,89 +143,89 @@
     <div class="wrap">
       <span class="kicker">Our services</span>
       <h2>What we do</h2>
-      <p class="sub">Nine services at clear starting prices. Tap any service to book it.</p>
+      <p class="sub">Nine services at clear starting prices. Tap a service to see options and book.</p>
       <div class="grid">
-      <article class="card">
+      <a class="card" href="water-tank-cleaning.html">
         <div class="media"><img src="images/water-tank.webp" alt="Water Tank Cleaning" loading="lazy"></div>
         <div class="cbody">
           <h3>Water Tank Cleaning</h3>
           <p>Complete cleaning, sludge and dirt removal and sanitization with zero-human entry technology.</p><ul class="chips"><li>500 L · 1 tank ₹399</li><li>750 L · 1 tank ₹499</li><li>1,000 L · 1 tank ₹599</li></ul>
           <div class="price">From ₹399</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="tank">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="solar-panel-cleaning.html">
         <div class="media"><img src="images/solar.webp" alt="Solar Panel Care (AMC)" loading="lazy"></div>
         <div class="cbody">
           <h3>Solar Panel Care (AMC)</h3>
           <p>High-pressure washing and dust cleaning with 12 visits a year. One-time cleaning also available.</p><ul class="chips"><li>12 visits / year</li><li>One-time ₹100 / panel</li></ul>
           <div class="price">AMC from ₹499 / month</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="solar">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="sofa-cleaning.html">
         <div class="media"><img src="images/sofa.webp" alt="Sofa & Fabric Cleaning" loading="lazy"></div>
         <div class="cbody">
           <h3>Sofa & Fabric Cleaning</h3>
           <p>Foam wash, vacuum extraction, stain removal and sanitization.</p><ul class="chips"><li>5-seater ₹1,000</li><li>6-seater ₹1,200</li><li>7-seater / L-shape ₹1,400</li></ul>
           <div class="price">₹200 per seat</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="sofa">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="bathroom-deep-cleaning.html">
         <div class="media"><img src="images/bathroom.webp" alt="Bathroom Deep Cleaning" loading="lazy"></div>
         <div class="cbody">
           <h3>Bathroom Deep Cleaning</h3>
           <p>Acid-free tile and sanitary shine, tap cleaning, scaling removal and sanitization.</p><ul class="chips"><li>Attached toilet / bathroom ₹599</li></ul>
           <div class="price">₹499 per bathroom</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="bath">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="car-washing.html">
         <div class="media"><img src="images/carwash.webp" alt="Car Washing" loading="lazy"></div>
         <div class="cbody">
           <h3>Car Washing</h3>
           <p>Exterior and interior cleaning at your door, with optional polish.</p><ul class="chips"><li>Car Wash ₹399</li><li>With Polish ₹599</li></ul>
           <div class="price">From ₹399</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="car">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="waterproofing.html">
         <div class="media"><img src="images/rooftop.webp" alt="Waterproofing" loading="lazy"></div>
         <div class="cbody">
           <h3>Waterproofing</h3>
           <p>Roof, wall, basement and bathroom waterproofing with leakage protection coating.</p><ul class="chips"><li>10 years warranty</li></ul>
           <div class="price">₹35 per sq ft</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="wp">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="plumbing-services.html">
         <div class="media"><img src="images/pulumbing.webp" alt="Plumbing Services" loading="lazy"></div>
         <div class="cbody">
           <h3>Plumbing Services</h3>
           <p>Water pipeline connection, leakage repair, motor, tank and pipe fitting.</p>
           <div class="price">Visit from ₹500</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="plumb">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="electrical-services.html">
         <div class="media"><img src="images/electrical.webp" alt="Electrical Services" loading="lazy"></div>
         <div class="cbody">
           <h3>Electrical Services</h3>
           <p>Fittings, MCB/DB installation, short-circuit and electrical fault repair.</p>
           <div class="price">₹500 per point onwards</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="elec">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
-      <article class="card">
+      </a>
+      <a class="card" href="fitting-installation.html">
         <div class="media"><img src="images/fitting.webp" alt="Fitting &amp; Installation" loading="lazy"></div>
         <div class="cbody">
           <h3>Fitting & Installation</h3>
           <p>Kitchen fitting, repairs, installation and aluminium fittings.</p>
           <div class="price">Visit from ₹500</div>
-          <a class="link" href="service-booking-location-whatsapp.html" data-book="fit">Book this service &rarr;</a>
+          <span class="link">View options &amp; book &rarr;</span>
         </div>
-      </article>
+      </a>
       </div>
     </div>
   </section>
