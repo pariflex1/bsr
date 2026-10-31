@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Water Tank Cleaning in Jhansi | BSR Multi Services</title>
+<meta name="description" content="Complete tank cleaning with sludge and dirt removal, sanitization and clean water maintenance. Choose your option, see the rate and book on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#111214; --muted:#5d6470; --grey:#f3f4f6; --line:#e2e4e8; --white:#fff; --blue:#0861F2; --blue-dark:#064fc4; --tint:#eef4ff; --red:#c4261d; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--white); color:var(--ink); font-size:16px; line-height:1.6; padding-bottom:96px; }
+  a { color:inherit; text-decoration:none; }
+  svg { display:block; }
+  .wrap { width:100%; max-width:640px; margin:0 auto; padding:0 20px; }
+  header { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top); }
+  .nav { display:flex; align-items:center; justify-content:space-between; height:58px; }
+  .back { font-size:15px; font-weight:500; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 22px; border-radius:12px; font:inherit; font-size:15px; font-weight:500; border:1.5px solid transparent; cursor:pointer; }
+  .btn svg { width:18px; height:18px; }
+  .btn.primary { background:var(--blue); color:#fff; }
+  .btn.primary:active { background:var(--blue-dark); }
+  .btn.ghost { background:var(--white); border-color:var(--line); color:var(--ink); }
+  .btn.sm { min-height:40px; padding:0 16px; font-size:14px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+  .hero-img { margin-top:20px; aspect-ratio:16/10; border-radius:18px; overflow:hidden; background:var(--grey); }
+  .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
+  .badge { display:inline-block; margin-top:22px; font-size:12.5px; font-weight:500; color:var(--blue); background:var(--tint); padding:4px 12px; border-radius:100px; }
+  h1 { font-size:clamp(28px,7vw,38px); font-weight:600; letter-spacing:-.9px; line-height:1.15; margin:12px 0 10px; }
+  .lead { color:var(--muted); }
+  .from { font-size:17px; font-weight:600; color:var(--blue); margin-top:12px; }
+  .incl { list-style:none; margin-top:18px; display:grid; gap:8px; font-size:15px; color:var(--muted); }
+  .incl li::before { content:"✓"; color:var(--blue); font-weight:700; margin-right:10px; }
+  h2 { font-size:20px; font-weight:600; letter-spacing:-.4px; margin:40px 0 14px; }
+
+  /* options */
+  .opts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .opt { text-align:left; padding:14px 16px; background:var(--white); border:1.5px solid var(--line); border-radius:14px; font:inherit; color:var(--ink); cursor:pointer; transition:background .15s,border-color .15s,color .15s; }
+  .opt:active { transform:scale(.98); }
+  .opt b { display:block; font-size:15.5px; font-weight:600; line-height:1.3; }
+  .opt span { display:block; font-size:13px; color:var(--blue); margin-top:4px; }
+  .opt em { display:block; font-style:normal; font-size:12.5px; color:var(--muted); margin-top:2px; }
+  .opt.on { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .opt.on span, .opt.on em { color:#fff; }
+  .qlabel { font-size:14px; font-weight:500; margin:22px 0 10px; }
+  .qty { display:flex; align-items:center; gap:14px; }
+  .qty button { width:48px; height:48px; border-radius:50%; border:1.5px solid var(--line); background:var(--white); font-size:22px; cursor:pointer; color:var(--ink); }
+  .qty input { width:96px; height:48px; text-align:center; font:inherit; font-size:20px; font-weight:600; border:1.5px solid var(--line); border-radius:12px; background:var(--white); color:var(--ink); -moz-appearance:textfield; }
+  .qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+  .qsub { font-size:13px; color:var(--muted); margin-top:8px; }
+
+  .summary { margin-top:24px; padding:18px 20px; background:var(--grey); border-radius:16px; }
+  .summary small { font-size:13px; color:var(--muted); }
+  .sel { font-size:15px; font-weight:500; margin-top:2px; }
+  .tot { font-size:30px; font-weight:700; letter-spacing:-.8px; color:var(--blue); line-height:1.2; margin-top:6px; }
+  .summary p { font-size:12.5px; color:var(--muted); margin-top:6px; }
+
+  .field { margin-top:16px; }
+  .field label { display:block; font-size:14px; font-weight:500; margin-bottom:6px; }
+  .field input, .field textarea { width:100%; display:block; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; font:inherit; font-size:16px; color:var(--ink); background:var(--white); resize:none; }
+  .field .error { border-color:var(--red); }
+  .err { font-size:13px; color:var(--red); margin-top:5px; display:none; }
+  .err.show { display:block; }
+  .loc-btn { margin-top:10px; width:100%; min-height:44px; padding:8px 14px; display:flex; align-items:center; justify-content:center; gap:8px; border:1.5px solid var(--line); border-radius:12px; background:var(--white); color:var(--ink); font:inherit; font-size:14.5px; font-weight:500; cursor:pointer; }
+  .loc-btn.loading { pointer-events:none; opacity:.75; }
+  .loc-btn svg { width:18px; height:18px; }
+  .spin { width:16px; height:16px; border:2px solid var(--ink); border-top-color:transparent; border-radius:50%; animation:rotate .6s linear infinite; }
+  @keyframes rotate { to { transform:rotate(360deg); } }
+
+  .tblbox { background:var(--white); border:1.5px solid var(--line); border-radius:16px; overflow:hidden; }
+  .scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table { width:100%; min-width:520px; border-collapse:collapse; font-size:14.5px; }
+  th { background:var(--ink); color:#fff; font-weight:500; text-align:left; padding:11px 16px; white-space:nowrap; }
+  td { padding:12px 16px; border-top:1px solid var(--line); color:var(--muted); }
+  td:first-child { color:var(--ink); font-weight:500; }
+  td:nth-child(2) { color:var(--blue); font-weight:600; }
+  tbody tr:nth-child(even) td { background:#fafafb; }
+  .offer { margin-top:20px; padding:14px 18px; border:1.5px dashed var(--blue); background:var(--tint); border-radius:14px; font-size:14.5px; }
+
+  .more { display:flex; flex-wrap:wrap; gap:10px; }
+  .more a { padding:8px 16px; border:1.5px solid var(--line); border-radius:100px; font-size:14px; }
+  .more a:hover { border-color:var(--blue); color:var(--blue); }
+  .terms { margin-top:36px; padding:18px 20px; background:var(--grey); border-radius:16px; font-size:13.5px; color:var(--muted); }
+  .terms ul { padding-left:18px; } .terms li { margin-bottom:4px; }
+
+  .bar { position:fixed; bottom:0; left:0; right:0; z-index:30; background:rgba(255,255,255,.95); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-top:1px solid var(--line); padding:10px 0 calc(10px + env(safe-area-inset-bottom)); }
+  .bar .wrap { display:flex; gap:10px; }
+  .bar .call { flex:none; width:52px; padding:0; }
+  .bar .send { flex:1; }
+  .toast { position:fixed; top:16px; left:50%; transform:translateX(-50%) translateY(-140px); background:var(--ink); color:#fff; padding:10px 20px; border-radius:12px; font-size:14px; font-weight:500; z-index:999; transition:transform .3s ease; max-width:90%; text-align:center; }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+  .toast.bad { background:var(--red); }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation-duration:0s !important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="back" href="services-landing-page.html">&larr; All services</a>
+    <a class="btn primary sm" href="tel:+919267001374"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero-img"><img src="images/water-tank.webp" alt="Water Tank Cleaning"></div>
+  <span class="badge">Zero-human entry technology</span>
+  <h1>Water Tank Cleaning</h1>
+  <p class="lead">Complete tank cleaning with sludge and dirt removal, sanitization and clean water maintenance.</p>
+  <div class="from">Starting from ₹399</div>
+  <ul class="incl"><li>Complete tank cleaning</li><li>Sludge and dirt removal</li><li>Sanitization</li><li>Clean water maintenance</li><li>Zero-human entry technology</li></ul>
+
+  <h2>Choose tank capacity</h2>
+  <div class="opts" id="opts"></div>
+  <div id="qtyBox"></div>
+  
+
+  <div class="summary">
+    <small>Your selection</small>
+    <div class="sel" id="selTxt"></div>
+    <div class="tot" id="totTxt"></div>
+    <p>Starting rate. Parts extra. Final price is confirmed after site inspection.</p>
+  </div>
+
+  <h2>Book this service</h2>
+  <div class="field"><label for="name">Your name (optional)</label><input id="name" type="text" autocomplete="name" placeholder="Name"></div>
+  <div class="field"><label for="date">Preferred date (optional)</label><input id="date" type="date"></div>
+  <div class="field">
+    <label for="addr">Your address</label>
+    <textarea id="addr" rows="3" placeholder="House no., street, area, city" autocomplete="street-address"></textarea>
+    <div class="err" id="addrErr" role="alert">Please enter your address</div>
+    <button class="loc-btn" id="locBtn" type="button" onclick="getLoc()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+      <span id="locLabel">Use my current location</span>
+    </button>
+  </div>
+  <div class="field"><label for="notes">Notes (optional)</label><textarea id="notes" rows="2" placeholder="Anything we should know?"></textarea></div>
+  <div class="field"><button class="btn primary" style="width:100%" type="button" onclick="send()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>Book on WhatsApp</button></div>
+
+  <h2>Water Tank Cleaning rates</h2><div class="tblbox"><div class="scroll"><table><thead><tr><th>Tank capacity</th><th>1 tank</th><th>2 tanks</th><th>3 tanks</th><th>4 tanks</th><th>5 tanks</th></tr></thead><tbody><tr><td>500 litres</td><td>₹399</td><td>₹699</td><td>₹899</td><td>₹1,199</td><td>₹1,499</td></tr><tr><td>750 litres</td><td>₹499</td><td>₹899</td><td>₹1,199</td><td>₹1,599</td><td>₹1,999</td></tr><tr><td>1,000 litres</td><td>₹599</td><td>₹1,099</td><td>₹1,499</td><td>₹1,999</td><td>₹2,499</td></tr></tbody></table></div></div>
+
+  <h2>More services</h2>
+  <div class="more"><a href="solar-panel-cleaning.html">Solar Panel Care</a><a href="sofa-cleaning.html">Sofa &amp; Fabric Cleaning</a><a href="bathroom-deep-cleaning.html">Bathroom Deep Cleaning</a><a href="car-washing.html">Car Washing</a><a href="waterproofing.html">Waterproofing</a><a href="plumbing-services.html">Plumbing Services</a><a href="electrical-services.html">Electrical Services</a><a href="fitting-installation.html">Fitting &amp; Installation</a></div>
+
+  <div class="terms"><ul>
+    <li>Prices are starting rates and may vary depending on the work requirements.</li>
+    <li>Additional materials and spare parts are charged separately.</li>
+    <li>Final charges are confirmed after site inspection.</li>
+    <li>Advance appointment recommended.</li>
+  </ul></div>
+</main>
+
+<div class="bar"><div class="wrap">
+  <a class="btn ghost call" href="tel:+919267001374" aria-label="Call us"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+  <button class="btn primary send" type="button" onclick="send()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg><span id="barTxt">Book on WhatsApp</span></button>
+</div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const S = {"title": "Water Tank Cleaning", "choices": [{"label": "500 Litres", "show": "From ₹399", "price": 0, "note": "", "plus": 0, "suffix": "", "qty": {"unit": "tank", "units": "tanks", "label": "Number of tanks", "min": 1, "max": 5, "def": 1, "table": [399, 699, 899, 1199, 1499]}}, {"label": "750 Litres", "show": "From ₹499", "price": 0, "note": "", "plus": 0, "suffix": "", "qty": {"unit": "tank", "units": "tanks", "label": "Number of tanks", "min": 1, "max": 5, "def": 1, "table": [499, 899, 1199, 1599, 1999]}}, {"label": "1,000 Litres", "show": "From ₹599", "price": 0, "note": "", "plus": 0, "suffix": "", "qty": {"unit": "tank", "units": "tanks", "label": "Number of tanks", "min": 1, "max": 5, "def": 1, "table": [599, 1099, 1499, 1999, 2499]}}]};
+  let ci = 0, q = null, lat = '', lng = '', acc = '';
+  const $ = id => document.getElementById(id);
+  const inr = n => '₹' + n.toLocaleString('en-IN');
+  const cur = () => S.choices[ci];
+  const initQ = () => { q = cur().qty ? cur().qty.def : null; };
+
+  function total() {
+    const c = cur(), qc = c.qty;
+    if (!qc) return c.price;
+    return qc.table ? qc.table[q - 1] : c.price * q;
+  }
+  function optLabel() {
+    const c = cur(), qc = c.qty;
+    return c.label + (qc ? ' × ' + q + ' ' + (q === 1 ? qc.unit : qc.units) : '');
+  }
+  function totText() { const c = cur(); return inr(total()) + (c.plus ? ' onwards' : '') + (c.suffix || ''); }
+
+  function render() {
+    const c = cur(), qc = c.qty;
+    $('opts').innerHTML = S.choices.map((x, i) =>
+      `<button type="button" class="opt${i === ci ? ' on' : ''}" aria-pressed="${i === ci}" onclick="pick(${i})"><b>${x.label}</b><span>${x.show}</span>${x.note ? `<em>${x.note}</em>` : ''}</button>`).join('');
+    $('qtyBox').innerHTML = qc
+      ? `<div class="qlabel">${qc.label}</div><div class="qty"><button type="button" aria-label="Decrease" onclick="chg(-1)">−</button><input id="qin" type="number" inputmode="numeric" min="${qc.min}" max="${qc.max}" value="${q}" onchange="setQ(this.value)" aria-label="${qc.label}"><button type="button" aria-label="Increase" onclick="chg(1)">+</button></div>`
+        + (qc.table ? '' : `<div class="qsub">${inr(c.price)} per ${qc.unit}</div>`)
+      : '';
+    $('selTxt').textContent = optLabel();
+    $('totTxt').textContent = totText();
+    $('barTxt').textContent = 'Book on WhatsApp · ' + totText();
+  }
+  function pick(i) { ci = i; initQ(); render(); }
+  function clampQ(n) { const qc = cur().qty; return Math.min(qc.max, Math.max(qc.min, isNaN(n) ? qc.def : n)); }
+  function setQ(v) { q = clampQ(parseInt(v, 10)); render(); }
+  function chg(d) {
+    const qc = cur().qty, step = qc.unit === 'sq ft' ? 50 : 1;
+    q = clampQ(q + d * step); render();
+  }
+
+  function msg(text, bad) {
+    const el = $('toast'); el.textContent = text; el.className = 'toast' + (bad ? ' bad' : '');
+    setTimeout(() => el.classList.add('show'), 10); setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  function getLoc() {
+    const btn = $('locBtn'), svg = btn.querySelector('svg'), label = $('locLabel');
+    if (!navigator.geolocation) { msg('Location is not supported by this browser', true); return; }
+    if (!window.isSecureContext) { msg('Location requires HTTPS or localhost', true); return; }
+    btn.classList.add('loading'); svg.style.display = 'none'; label.textContent = 'Finding your location…';
+    const sp = document.createElement('div'); sp.className = 'spin'; sp.id = 'sp'; btn.prepend(sp);
+    navigator.geolocation.getCurrentPosition(
+      async (p) => {
+        lat = p.coords.latitude; lng = p.coords.longitude; acc = Math.round(p.coords.accuracy);
+        try {
+          const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lng)}&format=jsonv2`, { headers: { 'Accept': 'application/json' } });
+          if (!r.ok) throw new Error('lookup failed');
+          const d = await r.json();
+          $('addr').value = d.display_name || `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+        } catch { $('addr').value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`; }
+        $('addr').classList.remove('error'); $('addrErr').classList.remove('show');
+        msg(`Location captured (accuracy about ${acc} m)`, false); done('Update my location');
+      },
+      (e) => {
+        lat = lng = acc = '';
+        const m = { 1: 'Location permission denied. Allow location access and try again.', 2: 'Location unavailable. Please enable device location services.', 3: 'Location timed out. Please try again.' };
+        msg(m[e.code] || 'Could not get location', true); done('Use my current location');
+      },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
+    );
+    function done(t) { const s = $('sp'); if (s) s.remove(); svg.style.display = ''; label.textContent = t; btn.classList.remove('loading'); }
+  }
+
+  function send() {
+    const addrEl = $('addr'), addr = addrEl.value.trim();
+    if (!addr) { addrEl.classList.add('error'); $('addrErr').classList.add('show'); addrEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); msg('Please enter your address', true); return; }
+    const name = $('name').value.trim(), date = $('date').value, notes = $('notes').value.trim();
+    const mapLink = lat !== '' ? `https://www.google.com/maps?q=${lat},${lng}` : 'GPS location was not captured';
+    const text =
+      `*Service Booking Request*\n\n` +
+      `*Service:* ${S.title}\n*Option:* ${optLabel()}\n*Estimated price:* ${totText()}\n_(Starting rate. Final price after site inspection.)_\n\n` +
+      (name ? `*Name:* ${name}\n` : '') + (date ? `*Preferred date:* ${date}\n` : '') + (notes ? `*Notes:* ${notes}\n` : '') +
+      `\n*Address:*\n${addr}\n\n*Customer GPS Location:*\n${mapLink}\n` +
+      (lat !== '' ? `*Coordinates:* ${lat}, ${lng}\n*Estimated accuracy:* ${acc} metres` : '*GPS coordinates were not captured. Please confirm the address with the customer.*');
+    // WhatsApp opens with the message prefilled; the user must press Send.
+    window.open(`https://wa.me/919793871934?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  }
+
+  $('addr').addEventListener('input', function () { this.classList.remove('error'); $('addrErr').classList.remove('show'); });
+  $('date').min = new Date().toISOString().slice(0, 10);
+  initQ(); render();
+</script>
+</body>
+</html>
